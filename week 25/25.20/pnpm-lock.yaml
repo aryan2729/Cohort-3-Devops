@@ -134,22 +134,16 @@ importers:
       '@prisma/adapter-pg':
         specifier: ^7.8.0
         version: 7.8.0
-      pg:
-        specifier: ^8.21.0
-        version: 8.21.0
-    devDependencies:
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      '@types/node':
-        specifier: ^22.15.3
-        version: 22.15.3
-      dotenv:
-        specifier: ^17.4.2
-        version: 17.4.2
       prisma:
         specifier: ^7.8.0
         version: 7.8.0(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.2)
+    devDependencies:
+      '@repo/db':
+        specifier: workspace:*
+        version: 'link:'
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/typescript-config: {}
 

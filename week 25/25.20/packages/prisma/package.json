@@ -6,21 +6,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
-
-
-  "exports" :{
-    "./client" : "./src/index.ts"
-  },
-
+  "type": "commonjs",
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^22.15.3",
-    "dotenv": "^17.4.2",
-    "prisma": "^7.8.0"
+    "@repo/db" : "workspace:*"
+  },
+
+  "exports" : {
+    "./client" : "./src/index.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
-    "pg": "^8.21.0"
+    "prisma": "^7.8.0"
   }
 }
