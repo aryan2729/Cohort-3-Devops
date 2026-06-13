@@ -9,7 +9,7 @@ RUN npm install
 
 EXPOSE 3000
 
-#CMD is slightly different from RUN -> CMD tell what will run when you run the image 
+#CMD will run when the image starts 
 CMD ["node","index.js"]
 
 
