@@ -1,0 +1,29 @@
+FROM oven/bun:1 
+ARG DATABASE_URL
+#🚀 what is ARG (build argument) ? why do we need this in docker file sometimes in nextjs etc project we need to add database .env url value but we can't put it here in pubic repo so we add ARG DATABASE_URL and add this variable where we need this 
+# and then we add this actual value of database_url in docker build --build-arg DATABASE_URL=postgresql://etc -t frontend-code .  
+
+WORKDIR /usr/src/app
+ 
+# we can add here optimization like only copy first package.json etc then run npm install then COPY . . 
+COPY ./packages ./packages 
+COPY ./bun.lock  ./bun.lock
+COPY ./turbo.json ./turbo.json
+COPY ./package.json ./package.json
+COPY ./apps/web ./apps/web
+
+RUN bun install
+
+COPY . . 
+
+# see root folder .package.json for this script 
+RUN bun run db:generate
+RUN DATABASE_URL=${DATABASE_URL}  bun run build 
+
+EXPOSE 3000
+
+CMD ["bun","run","start:web"]
+
+
+#🚀 if you have a multiples docker files then do 
+#   -> docker build -t todo-app-backend -f ./docker/Dockerfile.backend  . 
