@@ -19,7 +19,7 @@ jobs:
             - name : Build and push  
               uses : docker/build-push-action@v4
               with :
-                context : .
-                file : ./docker/Dockerfile.backend
+                context: ./week 27/27.2-monorepo-deployment-during-class
+                file: ./week 27/27.2-monorepo-deployment-during-class/docker/Dockerfile.backend
                 push : true 
                 tags : aryancode27/todo-app-backend:${{ github.sha }}  #sha means version of tag in dockerfile.backend
