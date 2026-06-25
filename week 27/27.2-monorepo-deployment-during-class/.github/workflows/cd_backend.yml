@@ -2,6 +2,8 @@ name: Deploy the backend
 on:
     push:
         branches: [main]
+        paths: 
+            - "week 27/27.2-monorepo-deployment-during-class/**"
 jobs:
     build:
         runs-on: ubuntu-latest
