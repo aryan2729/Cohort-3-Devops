@@ -1,0 +1,32 @@
+name: Deploy the websocket
+on:
+    push:
+        branches: [main]
+                   
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name : Checkout the code
+              uses : actions/checkout@v2
+
+            - name : Docker login 
+              uses : docker/login-action@v2
+              with :
+                username: ${{ secrets.DOCKERHUB_USERNAME }}
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name : Build and push  
+              uses : docker/build-push-action@v4
+              with :
+                context : .
+                file : ./docker/dockerfile.ws
+                push : true 
+                tags : aryancode27/todo-app-websocket:${{ github.sha }}  #sha means version of tag in dockerfile.ws
+            
+            - name: Deploy to the VM
+              run: |
+                  echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
+                  chmod 700 /home/runner/ssh_key
+                  ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@65.2.128.2 -t "sudo docker stop user_backend && sudo docker run --name user_backend -d -p 8080:8080 aryancode27/todo-app-backend:${{ github.sha }}" 
+                  
