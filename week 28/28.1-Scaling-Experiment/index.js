@@ -1,3 +1,14 @@
+/* 1) Vertical Scaling (Scale Up): Increase the resources of a single server, 
+such as adding more CPU, RAM, or storage. For example, if your deployed 
+project starts receiving more visitors, you upgrade your EC2 instance from 
+2 vCPUs and 2 GB RAM to 8 vCPUs and 32 GB RAM so the same server can handle 
+more traffic.
+2) Horizontal Scaling (Scale Out): Add multiple servers and place a load balancer
+in front to distribute incoming requests. For example, if your project goes viral
+and receives thousands of concurrent visitors, instead of upgrading one server, 
+you deploy multiple backend servers so the traffic is shared, improving performance
+and reliability. */
+
 import express from "express";
 import cluster from "cluster";
 import os from "os";
